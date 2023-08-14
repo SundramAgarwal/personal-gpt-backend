@@ -11,7 +11,7 @@ const errorHandler = (err, req, res, next) => {
   }
   //duplicate key error
   if (err.code === 11000) {
-    const message = "Duplicate field value enterd";
+    const message = "Duplicate field value entered";
     error = new errorResponse(message, 400);
   }
   //mongoose validation
