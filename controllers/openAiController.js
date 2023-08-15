@@ -6,7 +6,7 @@ const configuration = new Configuration({
 });
 const openAi = new OpenAIApi(configuration);
 
-exports.summaryController = async (req, res) => {
+const summaryController = async (req, res) => {
   try {
     const { data } = await openAi.createCompletion({
       model: "text-davinci-003",
@@ -25,4 +25,8 @@ exports.summaryController = async (req, res) => {
       message: err.message,
     });
   }
+};
+
+module.exports = {
+  summaryController,
 };

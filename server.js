@@ -7,6 +7,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const colors = require("colors");
 const authRoutes = require("./routes/authRoutes");
+const openAiRoutes = require("./routes/openAiRoutes");
 const errorHandler = require("./middlewares/errorMiddleware");
 
 const app = express();
@@ -28,6 +29,7 @@ app.get("/", (req, res) => {
 
 // routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/openAi", openAiRoutes);
 
 //connect to DB and start server
 const PORT = process.env.PORT || 5000;
