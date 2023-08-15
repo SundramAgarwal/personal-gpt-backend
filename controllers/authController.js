@@ -11,7 +11,7 @@ exports.sendToken = (user, statusCode, res) => {
 };
 
 //REGISTER
-exports.registerController = async (req, res, next) => {
+const registerController = async (req, res, next) => {
   try {
     const { username, password, email } = req.body;
 
@@ -28,7 +28,7 @@ exports.registerController = async (req, res, next) => {
 };
 
 //LOGIN
-exports.loginController = async (req, res, next) => {
+const loginController = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     //validation
@@ -52,10 +52,16 @@ exports.loginController = async (req, res, next) => {
 };
 
 //LOGOUT
-exports.logoutController = async (req, res) => {
+const logoutController = async (req, res) => {
   res.clearCookie("refreshToken");
   return res.status(200).json({
     success: true,
     message: "Logout Succesfully",
   });
+};
+
+module.exports = {
+  registerController,
+  loginController,
+  logoutController,
 };
