@@ -22,6 +22,10 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 app.use(errorHandler);
 
+app.get("/", (req, res) => {
+  res.send("Server is running fine!!");
+});
+
 // routes
 app.use("/api/v1/auth", authRoutes);
 
