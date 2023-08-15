@@ -37,11 +37,11 @@ const loginController = async (req, res, next) => {
     }
     const user = await userModel.findOne({ email });
     if (!user) {
-      return next(new errorResponse("Invalid Creditial", 401));
+      return next(new errorResponse("Invalid Credential", 401));
     }
     const isMatch = await user.matchPassword(password);
     if (!isMatch) {
-      return next(new errorResponse("Invalid Creditial", 401));
+      return next(new errorResponse("Invalid Credential", 401));
     }
     //res
     this.sendToken(user, 200, res);

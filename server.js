@@ -13,7 +13,7 @@ const errorHandler = require("./middlewares/errorMiddleware");
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://personal-gpt.vercel.app"],
+    origin: ["http://localhost:3000", "https://personal-gpt-one.vercel.app/"],
     credentials: true,
   })
 );
@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
 
 // routes
 app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/openAi", openAiRoutes);
+app.use("/api/v1/openai", openAiRoutes);
 
 //connect to DB and start server
 const PORT = process.env.PORT || 5000;
