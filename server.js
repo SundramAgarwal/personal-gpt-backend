@@ -23,7 +23,7 @@ app.use(morgan("dev"));
 app.use(errorHandler);
 
 // routes
-app.use("/api/vi/auth", authRoutes);
+app.use("/api/v1/auth", authRoutes);
 
 //connect to DB and start server
 const PORT = process.env.PORT || 5000;
