@@ -60,18 +60,20 @@ const chatbotController = async (req, res) => {
       max_tokens: 300,
       temperature: 0.7,
     });
-    if (data) {
-      if (data.choices[0].text) {
-        return res.status(200).json(data.choices[0].text);
-      }
+    if (data && data.choices && data.choices[0] && data.choices[0].text) {
+      const generatedText = data.choices[0].text.trim(); // Extract the generated text
+      return res.status(200).json({ generatedText }); // Send the generated text in the response
     }
   } catch (err) {
     console.log(err);
-    return res.status(404).json({
-      message: err.message,
+    return res.status(500).json({
+      message: "Internal server error",
     });
   }
 };
+
+// Make sure you have the 'openai' library imported and properly configured before using this controller
+
 const jsconverterController = async (req, res) => {
   try {
     const { text } = req.body;
