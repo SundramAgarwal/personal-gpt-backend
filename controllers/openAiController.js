@@ -63,16 +63,23 @@ const chatbotController = async (req, res) => {
     const { text } = req.body;
     const { data } = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `Answer question similar to how yoda from star war would.
+      prompt: `Answer question similar to how Yoda from Star Wars would.
       Me: 'what is your name?'
-      yoda: 'yoda is my name'
+      Yoda: 'Yoda is my name'
       Me: ${text}`,
       max_tokens: 300,
-      temperature: 0.7,
+      temperature: 1,
     });
+
     if (data && data.choices && data.choices[0] && data.choices[0].text) {
       const generatedText = data.choices[0].text.trim(); // Extract the generated text
-      return res.status(200).json({ generatedText }); // Send the generated text in the response
+
+      // Remove prompt-like phrases (e.g., "Yoda:", "Me:", "ChatGPT:")
+      const processedText = generatedText
+        .replace(/(Yoda:|Me:|ChatGPT:)/g, "")
+        .trim();
+
+      return res.status(200).json({ generatedText: processedText }); // Send the processed generated text
     }
   } catch (err) {
     console.log(err);
